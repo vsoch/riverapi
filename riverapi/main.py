@@ -51,7 +51,14 @@ class Client:
         logger.info("%s: %s" % (r.url, json.dumps(response, indent=4)))
 
     def do_request(
-        self, typ, url, data=None, json=None, headers=None, return_json=True
+        self,
+        typ,
+        url,
+        data=None,
+        json=None,
+        headers=None,
+        return_json=True,
+        stream=False,
     ):
         """
         Do a request (get, post, etc)
@@ -61,15 +68,19 @@ class Client:
 
         # The first post when you upload the model defines the flavor (regression)
         if json:
-            r = requests.request(typ, self.baseurl + url, json=json, headers=headers)
+            r = requests.request(
+                typ, self.baseurl + url, json=json, headers=headers, stream=stream
+            )
         else:
-            r = requests.request(typ, self.baseurl + url, data=data, headers=headers)
-        if not self.quiet:
+            r = requests.request(
+                typ, self.baseurl + url, data=data, headers=headers, stream=stream
+            )
+        if not self.quiet and not stream and not return_json:
             self.print_response(r)
         self.check_response(r)
 
         # All data is typically json
-        if return_json:
+        if return_json and not stream:
             return r.json()
         return r
 
@@ -81,12 +92,20 @@ class Client:
             "post", url, data=data, json=json, headers=headers, return_json=return_json
         )
 
-    def get(self, url, data=None, json=None, headers=None, return_json=True):
+    def get(
+        self, url, data=None, json=None, headers=None, return_json=True, stream=False
+    ):
         """
         Perform a GET request
         """
         return self.do_request(
-            "get", url, data=data, json=json, headers=headers, return_json=return_json
+            "get",
+            url,
+            data=data,
+            json=json,
+            headers=headers,
+            return_json=return_json,
+            stream=stream,
         )
 
     def upload_model(self, model, flavor):
@@ -149,5 +168,28 @@ class Client:
         Get a listing of known models
         """
         return self.get("/api/models/")
+
+    def stream(self, url):
+        """
+        General stream endpoint
+        """
+        with self.get(url, stream=True, return_json=False) as r:
+            for line in r.iter_lines():
+                if line:
+                    if isinstance(line, bytes):
+                        line = line.decode("utf-8")
+                    yield line
+
+    def stream_metrics(self):
+        """
+        Stream metrics
+        """
+        return self.stream("/api/stream/metrics/")
+
+    def stream_events(self):
+        """
+        Stream events
+        """
+        return self.stream("/api/stream/events/")
 
     # TODO need to add streaming events/other endpoints and authentication

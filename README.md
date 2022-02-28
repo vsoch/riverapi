@@ -50,6 +50,13 @@ def main():
     # Get all models
     print(cli.models())
 
+    # Stream events
+    for event in cli.stream_events():
+        print(event)
+
+    # Stream metrics
+    for event in cli.stream_metrics():
+        print(event)
 
 if __name__ == "__main__":
     main()
