@@ -10,7 +10,15 @@ this can be added.
 
 ## Quick Start
 
-Given that you have a server running that implements the same space as django-river-ml:
+Given that you have a server running that implements the same space as django-river-ml, you can do
+the following. Note that if your server requires authentication, you can generate a token and export to:
+
+```bash
+export RIVER_ML_USER=dinosaur
+export RIVER_ML_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+And then do the following example.
 
 ```python
 from river import datasets

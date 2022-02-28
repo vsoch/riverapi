@@ -3,8 +3,13 @@ __copyright__ = "Copyright 2022, Vanessa Sochat"
 __license__ = "MPL 2.0"
 
 from riverapi.logger import logger
+from riverapi.auth import parse_auth_header
 import riverapi.defaults as defaults
 
+from copy import deepcopy
+
+import base64
+import os
 import json
 import dill
 import requests
@@ -19,12 +24,22 @@ class Client:
         self.baseurl = (baseurl or defaults.baseurl).strip("/")
         self.quiet = quiet
         self.flavors = ["regression", "binary", "multiclass"]
+        self.session = requests.session()
+        self.headers = {"Accept": "application/json", "User-Agent": "riverapi-python"}
+        self.getenv()
 
     def __repr__(self):
         return str(self)
 
     def __str__(self):
         return "[riverapi-client]"
+
+    def getenv(self):
+        """
+        Get any token / username set in the environment
+        """
+        self.token = os.environ.get("RIVER_ML_TOKEN")
+        self.user = os.environ.get("RIVER_ML_USER")
 
     def check_flavor(self, flavor):
         """
@@ -36,12 +51,87 @@ class Client:
                 % (flavor, " ".join(self.flavors))
             )
 
-    def check_response(self, r):
+    def check_response(self, typ, r, return_json=True, stream=False):
         """
         Ensure the response status code is 20x
         """
+        if r.status_code == 401:
+            if self.authenticate_request(r):
+                r.request.headers.update(self.headers)
+                r = self.session.send(r.request)
+                if return_json and not stream:
+                    return r.json()
+                return r
+
         if r.status_code not in [200, 201]:
             logger.exit("Unsuccessful response: %s, %s" % r.status_code, r.reason)
+
+        # All data is typically json
+        if return_json and not stream:
+            return r.json()
+        return r
+
+    def set_basic_auth(self, username, password):
+        """
+        A wrapper to adding basic authentication to the Request
+        """
+        auth_str = "%s:%s" % (username, password)
+        auth_header = base64.b64encode(auth_str.encode("utf-8"))
+        self.set_header("Authorization", "Basic %s" % auth_header.decode("utf-8"))
+
+    def set_header(self, name, value):
+        """
+        Set a header, name and value pair
+        """
+        self.headers.update({name: value})
+
+    def authenticate_request(self, originalResponse):
+        """
+        Authenticate the request.
+
+        Given a response (an HTTPError 401), look for a Www-Authenticate
+        header to parse. We return True/False to indicate if the request
+        should be retried.
+        """
+        authHeaderRaw = originalResponse.headers.get("Www-Authenticate")
+        if not authHeaderRaw:
+            return False
+
+        # If we have a username and password, set basic auth automatically
+        if self.token and self.user:
+            self.set_basic_auth(self.user, self.token)
+
+        headers = deepcopy(self.headers)
+        if "Authorization" not in headers:
+            logger.exit(
+                "This endpoint requires a token. Please export RIVER_ML_TOKEN and RIVER_ML_USER first."
+            )
+            return False
+
+        # Prepare request to retry
+        h = parse_auth_header(authHeaderRaw)
+        headers.update(
+            {
+                "service": h.Service,
+                "Accept": "application/json",
+                "User-Agent": "riverapi-python",
+            }
+        )
+
+        # Currently we don't set a scope (it defaults to build)
+        try:
+            authResponse = requests.get(h.Realm, headers=headers).json()
+        except:
+            logger.exit("Failed to get token from %s" % h.Realm)
+
+        # Request the token
+        token = authResponse.get("token")
+        if not token:
+            return False
+
+        # Set the token to the original request and retry
+        self.headers.update({"Authorization": "Bearer %s" % token})
+        return True
 
     def print_response(self, r):
         """
@@ -69,6 +159,10 @@ class Client:
         """
         Do a request (get, post, etc)
         """
+        # If we have a cached token, use it!
+        headers = headers or {}
+        headers.update(self.headers)
+
         if not self.quiet:
             logger.info("%s %s" % (typ.upper(), url))
 
@@ -83,12 +177,7 @@ class Client:
             )
         if not self.quiet and not stream and not return_json:
             self.print_response(r)
-        self.check_response(r)
-
-        # All data is typically json
-        if return_json and not stream:
-            return r.json()
-        return r
+        return self.check_response(typ, r, return_json=return_json, stream=stream)
 
     def post(self, url, data=None, json=None, headers=None, return_json=True):
         """
@@ -197,5 +286,3 @@ class Client:
         Stream events
         """
         return self.stream("/api/stream/events/")
-
-    # TODO need to add streaming events/other endpoints and authentication
