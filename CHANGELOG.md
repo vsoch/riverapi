@@ -14,4 +14,4 @@ and **Merged pull requests**. Critical items to know are:
 The versions coincide with releases on pip. Only major versions will be released as tags on Github.
 
 ## [0.0.x](https://github.com/vsoch/riverapi/tree/main) (0.0.x)
- - skeleton release (0.0.0)
+ - skeleton release (0.0.1)
