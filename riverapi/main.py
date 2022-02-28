@@ -53,8 +53,11 @@ class Client:
     def do_request(
         self, typ, url, data=None, json=None, headers=None, return_json=True
     ):
+        """
+        Do a request (get, post, etc)
+        """
         if not self.quiet:
-            logger.info("%s %s" % (typ.uppercase(), url))
+            logger.info("%s %s" % (typ.upper(), url))
 
         # The first post when you upload the model defines the flavor (regression)
         if json:
@@ -71,11 +74,17 @@ class Client:
         return r
 
     def post(self, url, data=None, json=None, headers=None, return_json=True):
+        """
+        Perform a POST request
+        """
         return self.do_request(
             "post", url, data=data, json=json, headers=headers, return_json=return_json
         )
 
     def get(self, url, data=None, json=None, headers=None, return_json=True):
+        """
+        Perform a GET request
+        """
         return self.do_request(
             "get", url, data=data, json=json, headers=headers, return_json=return_json
         )
@@ -92,7 +101,7 @@ class Client:
         logger.info("Created model %s" % model_name)
         return model_name
 
-    def train(self, model_name, x, y=None):
+    def learn(self, model_name, x, y=None):
         """
         Train on some data. You are required to provide at least the model
         name known to the server and x (data).
@@ -121,7 +130,7 @@ class Client:
         r = self.get("/api/model/download/%s/" % model_name, return_json=False)
 
         # Default to pickle in PWD
-        dest = dest or "%s.pkg" % model_name
+        dest = dest or "%s.pkl" % model_name
 
         # Save to dest file
         with open(dest, "wb") as f:
@@ -129,13 +138,16 @@ class Client:
                 f.write(chunk)
         return dest
 
-    def predict(self, model_name, x, y):
+    def predict(self, model_name, x):
         """
         Make a prediction
         """
         return self.post("/api/predict/", json={"model": model_name, "features": x})
 
     def models(self):
+        """
+        Get a listing of known models
+        """
         return self.get("/api/models/")
 
     # TODO need to add streaming events/other endpoints and authentication

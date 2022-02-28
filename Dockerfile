@@ -15,4 +15,3 @@ RUN pip install ipython
 WORKDIR /code
 COPY . /code
 RUN pip install -e .[all]
-ENTRYPOINT ["/opt/conda/bin/riverapi"]

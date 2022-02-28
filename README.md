@@ -1,15 +1,61 @@
 # River API Client
 
+[![PyPI version](https://badge.fury.io/py/riverapi.svg)](https://badge.fury.io/py/riverapi)
+
 This is an API client created for [django-river-ml](https://pypi.org/project/django-river-ml/)
 that is intended to make it easy to interact with an online ML server providing river models (learning, predicting, etc.).
 It currently does not provide a terminal  or command line client and is intended to be used
 from Python, but if there is a good use case for a command line set of interactions
 this can be added.
 
-**under development**
+## Quick Start
 
-not ready for use!
+Given that you have a server running that implements the same space as django-river-ml:
 
+```python
+from river import datasets
+from river import linear_model
+from river import preprocessing
+
+from riverapi.main import Client
+
+
+def main():
+
+    # This is the default, just to show how to customize
+    cli = Client("http://localhost:8000")
+
+    # Upload a model
+    model = preprocessing.StandardScaler() | linear_model.LinearRegression()
+
+    # Save the model name for other endpoint interaction
+    model_name = cli.upload_model(model, "regression")
+    print("Created model %s" % model_name)
+
+    # Train on some data
+    for x, y in datasets.TrumpApproval().take(100):
+        cli.learn(model_name, x=x, y=y)
+
+    # Get the model (this is a json representation)
+    model_json = cli.get_model_json(model_name)
+    model_json
+
+    # Saves to model-name>.pkl in pwd unless you provide a second arg, dest
+    cli.download_model(model_name)
+
+    # Make predictions
+    for x, y in datasets.TrumpApproval().take(10):
+        print(cli.predict(model_name, x=x))
+
+    # Get all models
+    print(cli.models())
+
+
+if __name__ == "__main__":
+    main()
+```
+
+**under development** more coming soon!
 
 ## Contributors
 
