@@ -51,17 +51,17 @@ class Client:
                 % (flavor, " ".join(self.flavors))
             )
 
-    def check_response(self, typ, r, return_json=True, stream=False):
+    def check_response(self, typ, r, return_json=True, stream=False, retry=True):
         """
         Ensure the response status code is 20x
         """
-        if r.status_code == 401:
+        if r.status_code == 401 and retry:
             if self.authenticate_request(r):
                 r.request.headers.update(self.headers)
                 r = self.session.send(r.request)
-                if return_json and not stream:
-                    return r.json()
-                return r
+                 
+                # Call itself once more just to check the status code
+                return self.check_response(typ, r, return_json, stream, retry=False)
 
         if r.status_code not in [200, 201]:
             logger.exit("Unsuccessful response: %s, %s" % r.status_code, r.reason)
