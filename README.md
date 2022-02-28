@@ -25,6 +25,9 @@ def main():
     # This is the default, just to show how to customize
     cli = Client("http://localhost:8000")
 
+    # Basic server info (usually no auth required)
+    cli.info()
+
     # Upload a model
     model = preprocessing.StandardScaler() | linear_model.LinearRegression()
 

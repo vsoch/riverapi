@@ -50,6 +50,12 @@ class Client:
         response = r.json()
         logger.info("%s: %s" % (r.url, json.dumps(response, indent=4)))
 
+    def info(self):
+        """
+        Get basic server information
+        """
+        return self.get("/api/")
+
     def do_request(
         self,
         typ,
