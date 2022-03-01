@@ -40,7 +40,7 @@ class Client:
         """
         Combine the baseurl and prefix to get the complete root.
         """
-        return self.baseurl + "/" + self.prefix.strip('/')
+        return self.baseurl + "/" + self.prefix.strip("/")
 
     def check(self):
         """
@@ -48,10 +48,10 @@ class Client:
         prefix or baseurl if the server provides different ones.
         """
         info = self.info()
-        for field in ['prefix', 'baseurl']:
+        for field in ["prefix", "baseurl"]:
             if field in info:
-                updated = info[field].strip('/')
-                print("Updating %s to %s" %(field, updated))
+                updated = info[field].strip("/")
+                print("Updating %s to %s" % (field, updated))
                 setattr(self, field, updated)
 
     def getenv(self):
@@ -212,7 +212,12 @@ class Client:
         Perform a DELETE request
         """
         return self.do_request(
-            "delete", url, data=data, json=json, headers=headers, return_json=return_json
+            "delete",
+            url,
+            data=data,
+            json=json,
+            headers=headers,
+            return_json=return_json,
         )
 
     def get(
