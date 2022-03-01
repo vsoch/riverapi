@@ -101,10 +101,6 @@ tool to generate a contributors graphic below.
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## TODO
-
-- add spec documentation
-
 ## License
 
 This code is licensed under the MPL 2.0 [LICENSE](LICENSE).
