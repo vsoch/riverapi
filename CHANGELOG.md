@@ -14,6 +14,7 @@ and **Merged pull requests**. Critical items to know are:
 The versions coincide with releases on pip. Only major versions will be released as tags on Github.
 
 ## [0.0.x](https://github.com/vsoch/riverapi/tree/main) (0.0.x)
+ - adding support for stats, metrics, and check (0.0.16)
  - basic authentication and bugfixes (0.0.15)
  - information endpoint (0.0.13)
  - addition of streaming events and metrics client functions (0.0.12)
