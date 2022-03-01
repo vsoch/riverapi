@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>River Api Spec &mdash; River API Python 0.0.16 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="River API Python" href="../api_reference/riverapi.html" />
+    <link rel="prev" title="User Guide" href="user-guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> River API Python
+          </a>
+              <div class="version">
+                0.0.16
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">River Api Spec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notational-conventions">Notational Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conformance">Conformance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#determining-support">Determining Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#endpoint-requirements">Endpoint Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#response-details">Response Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#errors">Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#timestamps">Timestamps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#endpoint-details">Endpoint Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generic-responses">Generic Responses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">404</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">503</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">400</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#service-info">Service Info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">200</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model-upload">Model Upload</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">201</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#learn">Learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Learn</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#or-201">200 or 201</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#metrics">Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stats">Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-metrics-and-events">Stream Metrics and Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-as-json">Model as Json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-model">Download Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-model">Delete Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/riverapi.html">River API Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/internal/modules.html">Internal API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">River API Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Getting Started</a> &raquo;</li>
+      <li>River Api Spec</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/spec.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="river-api-spec">
+<span id="spec"></span><h1>River Api Spec<a class="headerlink" href="#river-api-spec" title="Permalink to this headline"></a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>The <strong>River API Specification</strong> defines an API protocol
+to standardize the requests and responses for clients and servers related to
+interacting with a <a class="reference external" href="https://riverml.xyz">river</a> online machine learning server. Any server
+that implements this specification can be used, for example, with
+the <a class="reference external" href="https://github.com/vsoch/riverapi">riverapi client</a>. In other words,
+the spec facilitates creating, learning, predicting, and otherwise interacting with models.</p>
+</div>
+<div class="section" id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline"></a></h2>
+<p>The following terms are used commonly in this document, and a list of definitions is provided for reference:</p>
+<ul class="simple">
+<li><strong>Server</strong>: a service that provides the endpoints defined in this spec</li>
+<li><strong>Client</strong>: an application or tool that interacts with a Server.</li>
+</ul>
+</div>
+<div class="section" id="notational-conventions">
+<h2>Notational Conventions<a class="headerlink" href="#notational-conventions" title="Permalink to this headline"></a></h2>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” are to be interpreted as described in <a class="reference external" href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> (Bradner, S., “Key words for use in RFCs to Indicate Requirement Levels”, BCP 14, RFC 2119, March 1997).</p>
+</div>
+<div class="section" id="conformance">
+<h2>Conformance<a class="headerlink" href="#conformance" title="Permalink to this headline"></a></h2>
+<p>Currently, we don’t have any tools to test conformance, and the requirements are outlined here.</p>
+<div class="section" id="determining-support">
+<h3>Determining Support<a class="headerlink" href="#determining-support" title="Permalink to this headline"></a></h3>
+<p>To check whether or not the server implements the river api spec, the client SHOULD
+perform a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request to the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> (service info) endpoint.
+If the response is <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code>, then the server implements the spec.
+For example, given a url prefix of <code class="docutils literal notranslate"><span class="pre">http://127.0.0.0:5000</span></code> the client would issue a <code class="docutils literal notranslate"><span class="pre">GET</span></code>
+request to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">http://127.0.0.1:8000/api/</span>
+</pre></div>
+</div>
+<p>And see <a class="reference internal" href="#spec-service-info"><span class="std std-ref">Generic Responses</span></a> for more details on this request and response.
+<strong>Note</strong> this prefix can be changed by the implementing server, and if this is the case,
+the service info endpoint should send a field with a <code class="docutils literal notranslate"><span class="pre">prefix</span></code> or <code class="docutils literal notranslate"><span class="pre">baseurl</span></code> to direct
+the client elsewhere.</p>
+</div>
+<div class="section" id="endpoint-requirements">
+<h3>Endpoint Requirements<a class="headerlink" href="#endpoint-requirements" title="Permalink to this headline"></a></h3>
+<p>Servers conforming to the river api spec must provide the following endpoints:</p>
+<p>The most basic requirements for a server include endpoints:</p>
+<ol class="arabic simple">
+<li><strong>Service Info</strong> (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/</span></code>) endpoint with a 200 response</li>
+<li><strong>Create New Model</strong> (<code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/model/&lt;flavor&gt;/</span></code>) to create a new model</li>
+<li><strong>Learn</strong> (<code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/learn/</span></code>) to learn from new data</li>
+<li><strong>Predict</strong> (<code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/predict/</span></code>) to get a prediction</li>
+</ol>
+<p>Extra (but not required) endpoints include:</p>
+<ol class="arabic simple" start="5">
+<li><strong>Create New Named Model</strong> (<code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/model/&lt;flavor&gt;/&lt;name&gt;/</span></code>) to create a new model</li>
+<li><strong>Metrics</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/metrics/</span></code>) to get metrics for a model</li>
+<li><strong>Stats</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stats/</span></code>) to get stats for a model</li>
+<li><strong>Stream Metrics</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stream/metrics/</span></code>) to stream any updated metrics</li>
+<li><strong>Stream Events</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stream/events/</span></code>) to stream any updated events</li>
+<li><strong>Model As Json</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/model/</span></code>) to get a model as json</li>
+<li><strong>Download Model</strong>: (<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/model/download/</span></code>) to download a model (pickle)</li>
+<li><strong>Delete Model</strong>: (<code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/model/</span></code>) to delete a model and all related assets</li>
+</ol>
+</div>
+<div class="section" id="response-details">
+<h3>Response Details<a class="headerlink" href="#response-details" title="Permalink to this headline"></a></h3>
+<div class="section" id="errors">
+<h4>Errors<a class="headerlink" href="#errors" title="Permalink to this headline"></a></h4>
+<p>For all error responses, the server can (OPTIONAL) return in the body a nested structure of errors,
+each including a message and error code. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">    &quot;errors&quot;: [</span>
+<span class="go">        {</span>
+<span class="go">            &quot;code&quot;: &quot;&lt;error code&gt;&quot;,</span>
+<span class="go">            &quot;message&quot;: &quot;&lt;error message&gt;&quot;,</span>
+<span class="go">            &quot;detail&quot;: ...</span>
+<span class="go">        },</span>
+<span class="go">        ...</span>
+<span class="go">    ]</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>A simpler means (also okay) would be to provide a response with a message.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{&quot;message&quot;: &quot;&lt;error message&gt;&quot;}</span>
+</pre></div>
+</div>
+<p>Currently we don’t have a namespace for errors, but this can be developed if/when needed.
+For now, the code is a standard server error code provided by the returned request.</p>
+</div>
+<div class="section" id="timestamps">
+<h4>Timestamps<a class="headerlink" href="#timestamps" title="Permalink to this headline"></a></h4>
+<p>For all fields that return a timestamp, we are tentatively going to use the stringified
+version of a <cite>datetime.now()</cite>, which looks like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">2020-12-15 11:43:24.811860</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="endpoint-details">
+<h2>Endpoint Details<a class="headerlink" href="#endpoint-details" title="Permalink to this headline"></a></h2>
+<div class="section" id="generic-responses">
+<span id="spec-service-info"></span><h3>Generic Responses<a class="headerlink" href="#generic-responses" title="Permalink to this headline"></a></h3>
+<p>For any endpoint, a generic response can be sent to indicate the following:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503</a>: service not available</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404</a>: not implemented, or not found</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request (usually your fault)</li>
+</ul>
+<p>Since these are generic and it would be redundant to repeat them below, we mention them once here.</p>
+<div class="section" id="id4">
+<h4>404<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<p>In the case of a 404 response, it means that the server does not implement the spec.
+The client should stop, and then respond appropriately (e.g., giving an error message or warning to the user).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;not implemented&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>503<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h4>
+<p>If the service exists but is not running, a 503 is returned. The client should respond in the same
+way as the 404, except perhaps trying later.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;service not available&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>400<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<p>A bad request is typically missing or malformed data, and the message back should include
+an error/message about what is wrong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;features are required to use this endpoint.&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="service-info">
+<h3>Service Info<a class="headerlink" href="#service-info" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/</span></code></p>
+<p>This particular Endpoint exists to check the status of a running service. The client
+should issue a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request to this endpoint without any data, and the response should be any of the following:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success (indicates running)</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503</a>: service not available</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404</a>: not implemented, or not found</li>
+</ul>
+<p>As the initial entrypoint, this endpoint also can communicate back to the client that the prefix or
+baseurl has changed by providing those parameters. We could also return a 302 response with a Location
+header, if others want to change the spec to support this. For each of the above,
+the minimal response returned should include in the body a status message
+and a version, both strings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id10">
+<h4>200<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<p>A 200 is a successful response, meaning that the endpoint was found, and is running.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="model-upload">
+<h3>Model Upload<a class="headerlink" href="#model-upload" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/model/&lt;flavor&gt;/</span></code>
+<code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/model/&lt;flavor&gt;/&lt;name&gt;/</span></code></p>
+<p>A post to this endpoint indicates that we want to upload a model. A flavor is required.
+If we provide a name, it should be used instead of a randomly generated one. The data of the post
+should be a binary dump (e.g., pickle) of the river model object.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success (indicates running)</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503</a>: service not available</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
+</ul>
+<div class="section" id="id14">
+<h4>201<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
+<p>A 201 response indicates that the model was created, and it’s name should be returned.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;persnickety-taco&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="learn">
+<h3>Learn<a class="headerlink" href="#learn" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/learn/</span></code></p>
+<p>The learn endpoint expects a POST with:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>model</strong>: the model name intending to present learning data to</li>
+<li><strong>features</strong>: a dictionary of features (x)</li>
+<li><strong>ground_truth</strong>: the ground truth (y) typically one value for binary or regression</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201">201</a>: success</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3>Learn<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/predict/</span></code></p>
+<p>The predict endpoint expects a POST with:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>model</strong>: the model name intending to present learning data to</li>
+<li><strong>features</strong>: a dictionary of features (x)</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201">201</a>: success and identifier created</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
+</ul>
+<div class="section" id="or-201">
+<h4>200 or 201<a class="headerlink" href="#or-201" title="Permalink to this headline"></a></h4>
+<p>If the prediction is successful, you’ll either get a 200 (success but not created) or 201 (success and created) response,
+along with the prediction and model name back.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;punky-taco&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="metrics">
+<h3>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/metrics/</span></code></p>
+<p>Get metrics for a model. You should send the model name as “model” as the only GET params.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+</ul>
+<p>The metrics returned back should be a dictionary of key value pairs of metrics appropriate
+for the model type.</p>
+</div>
+<div class="section" id="stats">
+<h3>Stats<a class="headerlink" href="#stats" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stats/</span></code></p>
+<p>Get stats for a model. You should send the model name as “model” as the only GET params.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+</ul>
+<p>The stats returned back should be a dictionary with keys “learn” and “predict” and then
+sub-dictionaries with key value pairs of stats appropriate for the model type.</p>
+</div>
+<div class="section" id="stream-metrics-and-events">
+<h3>Stream Metrics and Events<a class="headerlink" href="#stream-metrics-and-events" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stream/metrics/</span></code>
+<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/stream/events/</span></code></p>
+<p>Get a stream of updated metrics/events as they are updated. These endpoints can “hang” open
+as long as you need, and you should press Control+C when you want to stop it.
+It’s intended to be run as a kind of small service.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+</ul>
+<p>Streamed metrics can have the format of:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">label: &lt;value&gt;</span>
+</pre></div>
+</div>
+<p>where label should be a string identifier followed by a colon, and value ideally
+is a dictionary that can be parsed further.</p>
+</div>
+<div class="section" id="model-as-json">
+<h3>Model as Json<a class="headerlink" href="#model-as-json" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/model/</span></code></p>
+<p>This GET request should include one GET parameter, “model” as the model name to retrieve.
+A json representation of the model is returned, which typically tries to unwrap a model
+object and turn into formats that can be serialized to json.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+</ul>
+</div>
+<div class="section" id="download-model">
+<h3>Download Model<a class="headerlink" href="#download-model" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/model/download/</span></code></p>
+<p>A request to this endpoint with a GET parameter “model” as the model name should
+return a response you can stream to file, and this is the pickled model.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404</a>: model not found</li>
+</ul>
+</div>
+<div class="section" id="delete-model">
+<h3>Delete Model<a class="headerlink" href="#delete-model" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/model/</span></code></p>
+<p>A DELETE request to this endpoint with a GET parameter “model” as the model name
+should delete the model, and all associated artifacts. Note that this cannot be undone.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204">204</a>: successful delete</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404</a>: model not found</li>
+</ul>
+</div>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline"></a></h2>
+<p>Although authentication is not officially part of the spec, we encourage the implementation
+to provide it to secure a server. The typical flow is the following:</p>
+<ol class="arabic simple">
+<li>A particular set of endpoints are protected with authentication. They look for an Authentication header in the request.</li>
+<li>If not found, a 403 response is returned with a <code class="docutils literal notranslate"><span class="pre">Www-Authenticate</span></code> header that includes a realm to ping with basic credentials.</li>
+<li>basic credentials (e.g., username and token password) are base64 encoded in the format <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;:&lt;password&gt;</span></code> and send with the Authorization header back to the endpoint specified as the realm.</li>
+<li>The server decodes the credentials, verifies the account, and sends back a self-expiring jwt (json web token)</li>
+<li>The client adds the token to an Authorization bearer token header and retries the request. It should succeed.</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user-guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_reference/riverapi.html" class="btn btn-neutral float-right" title="River API Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Vanessa Sochat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
