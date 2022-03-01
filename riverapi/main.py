@@ -20,12 +20,13 @@ class Client:
     Interact with a River Server
     """
 
-    def __init__(self, baseurl=None, quiet=False):
+    def __init__(self, baseurl=None, quiet=False, prefix="api"):
         self.baseurl = (baseurl or defaults.baseurl).strip("/")
         self.quiet = quiet
         self.flavors = ["regression", "binary", "multiclass"]
         self.session = requests.session()
         self.headers = {"Accept": "application/json", "User-Agent": "riverapi-python"}
+        self.prefix = prefix
         self.getenv()
 
     def __repr__(self):
@@ -33,6 +34,25 @@ class Client:
 
     def __str__(self):
         return "[riverapi-client]"
+
+    @property
+    def apiroot(self):
+        """
+        Combine the baseurl and prefix to get the complete root.
+        """
+        return self.baseurl + "/" + self.prefix.strip('/')
+
+    def check(self):
+        """
+        The user can run check to perform a service info, and update the
+        prefix or baseurl if the server provides different ones.
+        """
+        info = self.info()
+        for field in ['prefix', 'baseurl']:
+            if field in info:
+                updated = info[field].strip('/')
+                print("Updating %s to %s" %(field, updated))
+                setattr(self, field, updated)
 
     def getenv(self):
         """
@@ -59,12 +79,12 @@ class Client:
             if self.authenticate_request(r):
                 r.request.headers.update(self.headers)
                 r = self.session.send(r.request)
-                 
+
                 # Call itself once more just to check the status code
                 return self.check_response(typ, r, return_json, stream, retry=False)
 
         if r.status_code not in [200, 201]:
-            logger.exit("Unsuccessful response: %s, %s" % r.status_code, r.reason)
+            logger.exit("Unsuccessful response: %s, %s" % (r.status_code, r.reason))
 
         # All data is typically json
         if return_json and not stream:
@@ -144,7 +164,7 @@ class Client:
         """
         Get basic server information
         """
-        return self.get("/api/")
+        return self.get("/")
 
     def do_request(
         self,
@@ -169,11 +189,11 @@ class Client:
         # The first post when you upload the model defines the flavor (regression)
         if json:
             r = requests.request(
-                typ, self.baseurl + url, json=json, headers=headers, stream=stream
+                typ, self.apiroot + url, json=json, headers=headers, stream=stream
             )
         else:
             r = requests.request(
-                typ, self.baseurl + url, data=data, headers=headers, stream=stream
+                typ, self.apiroot + url, data=data, headers=headers, stream=stream
             )
         if not self.quiet and not stream and not return_json:
             self.print_response(r)
@@ -185,6 +205,14 @@ class Client:
         """
         return self.do_request(
             "post", url, data=data, json=json, headers=headers, return_json=return_json
+        )
+
+    def delete(self, url, data=None, json=None, headers=None, return_json=True):
+        """
+        Perform a DELETE request
+        """
+        return self.do_request(
+            "delete", url, data=data, json=json, headers=headers, return_json=return_json
         )
 
     def get(
@@ -210,7 +238,7 @@ class Client:
         model = preprocessing.StandardScaler() | linear_model.LinearRegression()
         """
         self.check_flavor(flavor)
-        r = self.post("/api/model/%s/" % flavor, data=dill.dumps(model))
+        r = self.post("/model/%s/" % flavor, data=dill.dumps(model))
         model_name = r["name"]
         logger.info("Created model %s" % model_name)
         return model_name
@@ -224,14 +252,20 @@ class Client:
             cli.train(x, y)
         """
         return self.post(
-            "/api/learn/", json={"model": model_name, "features": x, "ground_truth": y}
+            "/learn/", json={"model": model_name, "features": x, "ground_truth": y}
         )
+
+    def delete_model(self, model_name):
+        """
+        Delete a model by name
+        """
+        return self.delete("/model/", data={"model": model_name})
 
     def get_model_json(self, model_name):
         """
         Get a json respresentation of a model.
         """
-        return self.get("/api/model/%s/" % model_name)
+        return self.get("/model/%s/" % model_name)
 
     def download_model(self, model_name, dest=None):
         """
@@ -241,7 +275,7 @@ class Client:
             content=pickle.load(fd)
         """
         # Get the model (this is a download of the pickled model with dill)
-        r = self.get("/api/model/download/%s/" % model_name, return_json=False)
+        r = self.get("/model/download/%s/" % model_name, return_json=False)
 
         # Default to pickle in PWD
         dest = dest or "%s.pkl" % model_name
@@ -256,13 +290,25 @@ class Client:
         """
         Make a prediction
         """
-        return self.post("/api/predict/", json={"model": model_name, "features": x})
+        return self.post("/predict/", json={"model": model_name, "features": x})
 
     def models(self):
         """
         Get a listing of known models
         """
-        return self.get("/api/models/")
+        return self.get("/models/")
+
+    def stats(self, model_name):
+        """
+        Get stats for a model name
+        """
+        return self.get("/stats/", json={"model": model_name})
+
+    def metrics(self, model_name):
+        """
+        Get metrics for a model name
+        """
+        return self.get("/metrics/", json={"model": model_name})
 
     def stream(self, url):
         """
@@ -279,10 +325,10 @@ class Client:
         """
         Stream metrics
         """
-        return self.stream("/api/stream/metrics/")
+        return self.stream("/stream/metrics/")
 
     def stream_events(self):
         """
         Stream events
         """
-        return self.stream("/api/stream/events/")
+        return self.stream("/stream/events/")
