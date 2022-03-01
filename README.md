@@ -58,6 +58,10 @@ def main():
     for x, y in datasets.TrumpApproval().take(10):
         print(cli.predict(model_name, x=x))
 
+    # Get stats and metrics for the model
+    cli.stats(model_name)
+    cli.metrics(model_name)
+
     # Get all models
     print(cli.models())
 
@@ -68,6 +72,9 @@ def main():
     # Stream metrics
     for event in cli.stream_metrics():
         print(event)
+
+    # Delete the model
+    cli.delete_model(model_name)
 
 if __name__ == "__main__":
     main()
@@ -93,6 +100,10 @@ tool to generate a contributors graphic below.
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## TODO
+
+- add spec documentation
 
 ## License
 
