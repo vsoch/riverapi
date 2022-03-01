@@ -53,5 +53,5 @@ Resources
     :hidden:
     :maxdepth: 1
 
-    api_reference/django-river-ml
+    api_reference/riverapi
     api_reference/internal/modules
