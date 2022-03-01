@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>riverapi package &mdash; River API Python 0.0.16 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> River API Python
+          </a>
+              <div class="version">
+                0.0.16
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/user-guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Internal API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">River API Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>riverapi package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api_reference/internal/riverapi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="riverapi-package">
+<h1>riverapi package<a class="headerlink" href="#riverapi-package" title="Permalink to this headline"></a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="module-riverapi.defaults">
+<span id="riverapi-defaults-module"></span><h2>riverapi.defaults module<a class="headerlink" href="#module-riverapi.defaults" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="module-riverapi.auth">
+<span id="riverapi-auth-module"></span><h2>riverapi.auth module<a class="headerlink" href="#module-riverapi.auth" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="riverapi.auth.authHeader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><code class="sig-prename descclassname"><span class="pre">riverapi.auth.</span></code><code class="sig-name descname"><span class="pre">authHeader</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">lookup</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/auth.html#authHeader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.auth.authHeader" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.auth.parse_auth_header">
+<code class="sig-prename descclassname"><span class="pre">riverapi.auth.</span></code><code class="sig-name descname"><span class="pre">parse_auth_header</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">authHeaderRaw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/auth.html#parse_auth_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.auth.parse_auth_header" title="Permalink to this definition"></a></dt>
+<dd><p>Parse an authentication header into relevant pieces</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-riverapi.logger">
+<span id="riverapi-logger-module"></span><h2>riverapi.logger module<a class="headerlink" href="#module-riverapi.logger" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><code class="sig-prename descclassname"><span class="pre">riverapi.logger.</span></code><code class="sig-name descname"><span class="pre">ColorizingStreamHandler</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">nocolor=False</span></span></em>, <em><span class="n"><span class="pre">stream=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stderr&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em><span class="n"><span class="pre">use_threads=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#ColorizingStreamHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.BLACK">
+<code class="sig-name descname"><span class="pre">BLACK</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.BLACK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.BLUE">
+<code class="sig-name descname"><span class="pre">BLUE</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.BLUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.BOLD_SEQ">
+<code class="sig-name descname"><span class="pre">BOLD_SEQ</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[1m'</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.BOLD_SEQ" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.COLOR_SEQ">
+<code class="sig-name descname"><span class="pre">COLOR_SEQ</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[%dm'</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.COLOR_SEQ" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.CYAN">
+<code class="sig-name descname"><span class="pre">CYAN</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.CYAN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.GREEN">
+<code class="sig-name descname"><span class="pre">GREEN</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.GREEN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.MAGENTA">
+<code class="sig-name descname"><span class="pre">MAGENTA</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.MAGENTA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.RED">
+<code class="sig-name descname"><span class="pre">RED</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.RED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.RESET_SEQ">
+<code class="sig-name descname"><span class="pre">RESET_SEQ</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.RESET_SEQ" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.WHITE">
+<code class="sig-name descname"><span class="pre">WHITE</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.WHITE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.YELLOW">
+<code class="sig-name descname"><span class="pre">YELLOW</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.YELLOW" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.can_color_tty">
+<code class="sig-name descname"><span class="pre">can_color_tty</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#ColorizingStreamHandler.can_color_tty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.can_color_tty" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.colors">
+<code class="sig-name descname"><span class="pre">colors</span></code><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'CRITICAL':</span> <span class="pre">1,</span> <span class="pre">'DEBUG':</span> <span class="pre">4,</span> <span class="pre">'ERROR':</span> <span class="pre">1,</span> <span class="pre">'INFO':</span> <span class="pre">2,</span> <span class="pre">'WARNING':</span> <span class="pre">3}</span></em><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.colors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.decorate">
+<code class="sig-name descname"><span class="pre">decorate</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#ColorizingStreamHandler.decorate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.decorate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.emit">
+<code class="sig-name descname"><span class="pre">emit</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#ColorizingStreamHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.emit" title="Permalink to this definition"></a></dt>
+<dd><p>Emit a record.</p>
+<p>If a formatter is specified, it is used to format the record.
+The record is then written to the stream with a trailing newline.  If
+exception information is present, it is formatted using
+traceback.print_exception and appended to the stream.  If the stream
+has an ‘encoding’ attribute, it is used to determine how to do the
+output to the stream.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="riverapi.logger.ColorizingStreamHandler.is_tty">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><code class="sig-name descname"><span class="pre">is_tty</span></code><a class="headerlink" href="#riverapi.logger.ColorizingStreamHandler.is_tty" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="riverapi.logger.Logger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><code class="sig-prename descclassname"><span class="pre">riverapi.logger.</span></code><code class="sig-name descname"><span class="pre">Logger</span></code><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.cleanup">
+<code class="sig-name descname"><span class="pre">cleanup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.cleanup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.cleanup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.debug">
+<code class="sig-name descname"><span class="pre">debug</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.debug" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.error">
+<code class="sig-name descname"><span class="pre">error</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.exit">
+<code class="sig-name descname"><span class="pre">exit</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em>, <em><span class="n"><span class="pre">return_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.exit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.exit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.handler">
+<code class="sig-name descname"><span class="pre">handler</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.handler" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.info">
+<code class="sig-name descname"><span class="pre">info</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.location">
+<code class="sig-name descname"><span class="pre">location</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.location" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.progress">
+<code class="sig-name descname"><span class="pre">progress</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">done</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.progress" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.set_level">
+<code class="sig-name descname"><span class="pre">set_level</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.set_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.set_level" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.set_stream_handler">
+<code class="sig-name descname"><span class="pre">set_stream_handler</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">stream_handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.set_stream_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.set_stream_handler" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.shellcmd">
+<code class="sig-name descname"><span class="pre">shellcmd</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.shellcmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.shellcmd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.text_handler">
+<code class="sig-name descname"><span class="pre">text_handler</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.text_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.text_handler" title="Permalink to this definition"></a></dt>
+<dd><p>The default snakemake log handler.
+Prints the output to the console.
+:param msg: the log message dictionary
+:type msg: dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.logger.Logger.warning">
+<code class="sig-name descname"><span class="pre">warning</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#Logger.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.Logger.warning" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.logger.setup_logger">
+<code class="sig-prename descclassname"><span class="pre">riverapi.logger.</span></code><code class="sig-name descname"><span class="pre">setup_logger</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">printshellcmds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">nocolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">use_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">wms_monitor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/logger.html#setup_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.logger.setup_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-riverapi.main">
+<span id="riverapi-main-module"></span><h2>riverapi.main module<a class="headerlink" href="#module-riverapi.main" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="riverapi.main.Client">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><code class="sig-prename descclassname"><span class="pre">riverapi.main.</span></code><code class="sig-name descname"><span class="pre">Client</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">baseurl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'api'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interact with a River Server</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="riverapi.main.Client.apiroot">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><code class="sig-name descname"><span class="pre">apiroot</span></code><a class="headerlink" href="#riverapi.main.Client.apiroot" title="Permalink to this definition"></a></dt>
+<dd><p>Combine the baseurl and prefix to get the complete root.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.authenticate_request">
+<code class="sig-name descname"><span class="pre">authenticate_request</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">originalResponse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.authenticate_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.authenticate_request" title="Permalink to this definition"></a></dt>
+<dd><p>Authenticate the request.</p>
+<p>Given a response (an HTTPError 401), look for a Www-Authenticate
+header to parse. We return True/False to indicate if the request
+should be retried.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.check">
+<code class="sig-name descname"><span class="pre">check</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.check" title="Permalink to this definition"></a></dt>
+<dd><p>The user can run check to perform a service info, and update the
+prefix or baseurl if the server provides different ones.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.check_flavor">
+<code class="sig-name descname"><span class="pre">check_flavor</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">flavor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.check_flavor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.check_flavor" title="Permalink to this definition"></a></dt>
+<dd><p>Verify that the flavor is known</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.check_response">
+<code class="sig-name descname"><span class="pre">check_response</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">typ</span></span></em>, <em><span class="n"><span class="pre">r</span></span></em>, <em><span class="n"><span class="pre">return_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.check_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.check_response" title="Permalink to this definition"></a></dt>
+<dd><p>Ensure the response status code is 20x</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">url</span></span></em>, <em><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">return_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.delete" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a DELETE request</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.delete_model">
+<code class="sig-name descname"><span class="pre">delete_model</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.delete_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.delete_model" title="Permalink to this definition"></a></dt>
+<dd><p>Delete a model by name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.do_request">
+<code class="sig-name descname"><span class="pre">do_request</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">typ</span></span></em>, <em><span class="n"><span class="pre">url</span></span></em>, <em><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">return_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.do_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.do_request" title="Permalink to this definition"></a></dt>
+<dd><p>Do a request (get, post, etc)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.download_model">
+<code class="sig-name descname"><span class="pre">download_model</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em>, <em><span class="n"><span class="pre">dest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.download_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.download_model" title="Permalink to this definition"></a></dt>
+<dd><p>Download a model to file (e.g., pickle)</p>
+<dl class="docutils">
+<dt>with open(“muffled-pancake-9439.pkl”, “rb”) as fd:</dt><dd>content=pickle.load(fd)</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">url</span></span></em>, <em><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">return_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.get" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a GET request</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.get_model_json">
+<code class="sig-name descname"><span class="pre">get_model_json</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.get_model_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.get_model_json" title="Permalink to this definition"></a></dt>
+<dd><p>Get a json respresentation of a model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.getenv">
+<code class="sig-name descname"><span class="pre">getenv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.getenv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.getenv" title="Permalink to this definition"></a></dt>
+<dd><p>Get any token / username set in the environment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.info">
+<code class="sig-name descname"><span class="pre">info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.info" title="Permalink to this definition"></a></dt>
+<dd><p>Get basic server information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.learn">
+<code class="sig-name descname"><span class="pre">learn</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.learn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.learn" title="Permalink to this definition"></a></dt>
+<dd><p>Train on some data. You are required to provide at least the model
+name known to the server and x (data).</p>
+<dl class="docutils">
+<dt>for x, y in datasets.TrumpApproval().take(100):</dt><dd>cli.train(x, y)</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.metrics">
+<code class="sig-name descname"><span class="pre">metrics</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Get metrics for a model name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.models">
+<code class="sig-name descname"><span class="pre">models</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.models" title="Permalink to this definition"></a></dt>
+<dd><p>Get a listing of known models</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.post">
+<code class="sig-name descname"><span class="pre">post</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">url</span></span></em>, <em><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">return_json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.post" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a POST request</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.predict">
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Make a prediction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.print_response">
+<code class="sig-name descname"><span class="pre">print_response</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.print_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.print_response" title="Permalink to this definition"></a></dt>
+<dd><p>Print the result of a response</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.set_basic_auth">
+<code class="sig-name descname"><span class="pre">set_basic_auth</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">username</span></span></em>, <em><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.set_basic_auth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.set_basic_auth" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper to adding basic authentication to the Request</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.set_header">
+<code class="sig-name descname"><span class="pre">set_header</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">name</span></span></em>, <em><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.set_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.set_header" title="Permalink to this definition"></a></dt>
+<dd><p>Set a header, name and value pair</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.stats">
+<code class="sig-name descname"><span class="pre">stats</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.stats" title="Permalink to this definition"></a></dt>
+<dd><p>Get stats for a model name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.stream">
+<code class="sig-name descname"><span class="pre">stream</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.stream" title="Permalink to this definition"></a></dt>
+<dd><p>General stream endpoint</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.stream_events">
+<code class="sig-name descname"><span class="pre">stream_events</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.stream_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.stream_events" title="Permalink to this definition"></a></dt>
+<dd><p>Stream events</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.stream_metrics">
+<code class="sig-name descname"><span class="pre">stream_metrics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.stream_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.stream_metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Stream metrics</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.upload_model">
+<code class="sig-name descname"><span class="pre">upload_model</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">model</span></span></em>, <em><span class="n"><span class="pre">flavor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.upload_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.upload_model" title="Permalink to this definition"></a></dt>
+<dd><p>Given a model / pipeline, upload to an online-ml server.</p>
+<p>model = preprocessing.StandardScaler() | linear_model.LinearRegression()</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-riverapi.utils">
+<span id="riverapi-utils-module"></span><h2>riverapi.utils module<a class="headerlink" href="#module-riverapi.utils" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="module-riverapi.utils.fileio">
+<span id="riverapi-utils-fileio-module"></span><h2>riverapi.utils.fileio module<a class="headerlink" href="#module-riverapi.utils.fileio" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.fileio.print_json">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.fileio.</span></code><code class="sig-name descname"><span class="pre">print_json</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">json_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/fileio.html#print_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.fileio.print_json" title="Permalink to this definition"></a></dt>
+<dd><p>Print json pretty</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.fileio.read_file">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.fileio.</span></code><code class="sig-name descname"><span class="pre">read_file</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/fileio.html#read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.fileio.read_file" title="Permalink to this definition"></a></dt>
+<dd><p>Read a file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.fileio.read_json">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.fileio.</span></code><code class="sig-name descname"><span class="pre">read_json</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/fileio.html#read_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.fileio.read_json" title="Permalink to this definition"></a></dt>
+<dd><p>Read a json file to a dictionary.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.fileio.write_file">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.fileio.</span></code><code class="sig-name descname"><span class="pre">write_file</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">content</span></span></em>, <em><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em><span class="n"><span class="pre">exec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/fileio.html#write_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.fileio.write_file" title="Permalink to this definition"></a></dt>
+<dd><p>Write content to a filename</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.fileio.write_json">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.fileio.</span></code><code class="sig-name descname"><span class="pre">write_json</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">json_obj</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/fileio.html#write_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.fileio.write_json" title="Permalink to this definition"></a></dt>
+<dd><p>Write json to a filename</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-riverapi.utils.terminal">
+<span id="riverapi-utils-terminal-module"></span><h2>riverapi.utils.terminal module<a class="headerlink" href="#module-riverapi.utils.terminal" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.terminal.confirm_action">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.terminal.</span></code><code class="sig-name descname"><span class="pre">confirm_action</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">question</span></span></em>, <em><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/terminal.html#confirm_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.terminal.confirm_action" title="Permalink to this definition"></a></dt>
+<dd><p>confirm if the user wants to perform a certain action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>question</strong> (<em>the question that will be asked</em>) – </li>
+<li><strong>force</strong> (<em>if the user wants to skip the prompt</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.terminal.confirm_uninstall">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.terminal.</span></code><code class="sig-name descname"><span class="pre">confirm_uninstall</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/terminal.html#confirm_uninstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.terminal.confirm_uninstall" title="Permalink to this definition"></a></dt>
+<dd><p>confirm if the user wants to uninstall a module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<em>the file that will be removed</em>) – </li>
+<li><strong>force</strong> (<em>if the user wants to skip the prompt</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.terminal.get_installdir">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.terminal.</span></code><code class="sig-name descname"><span class="pre">get_installdir</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/terminal.html#get_installdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.terminal.get_installdir" title="Permalink to this definition"></a></dt>
+<dd><p>get_installdir returns the installation directory of the application</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="riverapi.utils.terminal.run_command">
+<code class="sig-prename descclassname"><span class="pre">riverapi.utils.terminal.</span></code><code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">cmd</span></span></em>, <em><span class="n"><span class="pre">sudo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/utils/terminal.html#run_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.utils.terminal.run_command" title="Permalink to this definition"></a></dt>
+<dd><p>run_command uses subprocess to send a command to the terminal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cmd</strong> (<em>the command to send</em><em>, </em><em>should be a list for subprocess</em>) – </li>
+<li><strong>error_message</strong> (<em>the error message to give to user if fails</em><em>,</em>) – </li>
+<li><strong>failed.</strong> (<em>if none specified</em><em>, </em><em>will alert that command</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-riverapi.version">
+<span id="riverapi-version-module"></span><h2>riverapi.version module<a class="headerlink" href="#module-riverapi.version" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Vanessa Sochat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

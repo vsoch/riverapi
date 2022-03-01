@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide &mdash; River API Python 0.0.16 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Internal API" href="../api_reference/internal/modules.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> River API Python
+          </a>
+              <div class="version">
+                0.0.16
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#client">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check">Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-info">Service Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upload-model">Upload Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#learning">Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#predicting">Predicting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stats-and-metrics">Stats and Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-as-json">Model as Json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-model">Download Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-models">All Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-models">Finding Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming-events-or-metrics">Streaming Events or Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-a-model">Deleting a Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/internal/modules.html">Internal API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">River API Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Getting Started</a> &raquo;</li>
+      <li>User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/user-guide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="user-guide">
+<span id="getting-started-user-guide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline"></a></h1>
+<p>The River API client and specification allows you to easily interact with a <a class="reference external" href="https://github.com/vsoch/django-river-ml">Django River ML</a> server,
+or any other server that imlpements the <span class="xref std std-ref">spec</span>. These servers deploy <a class="reference external" href="https://riverml.xyz">river</a> online machine learning models.
+We are excited about what you might build with this set of tools, and please
+<a class="reference external" href="https://github.com/vsoch/riverapi">let us know</a>. if you have a question, find a bug, or want to request a feature!
+This is an open source project and we are eager for your contribution. 🎉️</p>
+<div class="section" id="usage">
+<span id="getting-started-user-guide-usage"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Once you have <code class="docutils literal notranslate"><span class="pre">riverapi</span></code> installed (<a class="reference internal" href="installation.html#getting-started-installation"><span class="std std-ref">Installation</span></a>) you
+can interact with server endpoints quite easily in Python.</p>
+<div class="section" id="client">
+<span id="getting-started-user-guide-usage-client"></span><h3>Client<a class="headerlink" href="#client" title="Permalink to this headline"></a></h3>
+<p>Creating a client is easy - just import the module and create it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">riverapi.main</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="c1"># This is the default, just to show how to customize</span>
+<span class="n">cli</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By default, we use localhost and port 8000, and the reason is because this
+is the default for a Django application. The above would be equivalent to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And if you had a custom server, “<a class="reference external" href="https://ml.land">https://ml.land</a>”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;https://ml.land&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You might also want to customize the API prefix, which defaults to “api”</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check">
+<span id="getting-started-user-guide-usage-authentication"></span><h3>Check<a class="headerlink" href="#check" title="Permalink to this headline"></a></h3>
+<p>It could be the case that the server is providing multiple endpoints to interact with,
+and needs to direct you to the correct one, or merely a different one than before.
+If you want to check this, and update the client prefix and/or baseurl with any updates
+from service info, you can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline"></a></h3>
+<p>We suggest that most River ML servers support basic authentication, meaning that:</p>
+<ol class="arabic simple">
+<li>The user supplies a username and token in the environment</li>
+<li>This “basic auth” is added to a base64 encoded header on response 403 with a “Www-Authenticate” response requesting authentication</li>
+<li>A token is returned that has a scoped lifetime (depending on the server) that can be added to an Authorization bearer token header.</li>
+</ol>
+<p>The client here handles this flow for you, and you just need to export your username and token to the environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export RIVER_ML_USER=dinosaur</span>
+<span class="go">export RIVER_ML_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+</pre></div>
+</div>
+<p>It is up to each server to decide to enforce authentication, and on which views. The client
+here will respond appropriately when asked to authenticate the request.</p>
+</div>
+<div class="section" id="service-info">
+<span id="getting-started-user-guide-usage-service-info"></span><h3>Service Info<a class="headerlink" href="#service-info" title="Permalink to this headline"></a></h3>
+<p>Typically you can ping the service info point to see that a server is running a River Online ML
+set of endpoints.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic server info (usually no auth required)</span>
+<span class="n">cli</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;django_river_ml&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;running&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Django River ML Endpoint&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;This service provides an api for models&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;documentationUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;https://vsoch.github.io/django-river-ml&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;storage&#39;</span><span class="p">:</span> <span class="s1">&#39;shelve&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;river_version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.9.0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.0.11&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>There is useful information about the server and river version, and how to find
+documentation for the server. In addition, a server that wants to direct the client to a different
+baseurl and/or prefix might provide that:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic server info (usually no auth required)</span>
+<span class="n">cli</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="p">{</span><span class="s1">&#39;baseurl&#39;</span><span class="p">:</span> <span class="s1">&#39;https://prod-server&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;django_river_ml&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;running&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Django River ML Endpoint&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;This service provides an api for models&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;documentationUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;https://vsoch.github.io/django-river-ml&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;ml&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;storage&#39;</span><span class="p">:</span> <span class="s1">&#39;shelve&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;river_version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.9.0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.0.11&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="upload-model">
+<span id="getting-started-user-guide-usage-upload-model"></span><h3>Upload Model<a class="headerlink" href="#upload-model" title="Permalink to this headline"></a></h3>
+<p>The servers are interacted with via named models. Each named model has a particular flavor (e.g., “regression” or “binary” or “multiclass”)
+and this flavor is required to provide when you first upload the model to the server. As an example, let’s create a simple
+regression model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">river</span> <span class="kn">import</span> <span class="n">linear_model</span><span class="p">,</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">river</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="c1"># Upload a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span> <span class="o">|</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To upload your model to the server, you need to specify the flavor, and upload!
+A successful response (200) will return the model name from the client, which you
+will need for other interactions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the model name for other endpoint interaction</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">upload_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;regression&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Created model </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">)</span>
+<span class="c1"># Created model fugly-mango</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="learning">
+<span id="getting-started-user-guide-usage-learning"></span><h3>Learning<a class="headerlink" href="#learning" title="Permalink to this headline"></a></h3>
+<p>Once the model is created and you have the name, learning is easy!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">river</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="c1"># Train on some data</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">TrumpApproval</span><span class="p">()</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">cli</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="predicting">
+<span id="getting-started-user-guide-usage-predicting"></span><h3>Predicting<a class="headerlink" href="#predicting" title="Permalink to this headline"></a></h3>
+<p>And predicting is similar.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">TrumpApproval</span><span class="p">()</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stats-and-metrics">
+<span id="getting-started-user-guide-usage-model-as-json"></span><h3>Stats and Metrics<a class="headerlink" href="#stats-and-metrics" title="Permalink to this headline"></a></h3>
+<p>You can easily ask the server to give you stats or metrics for your model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span><span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;MAE&#39;</span><span class="p">:</span> <span class="mf">7.640048891289847</span><span class="p">,</span>
+ <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="mf">12.073092099314318</span><span class="p">,</span>
+ <span class="s1">&#39;SMAPE&#39;</span><span class="p">:</span> <span class="mf">23.47518046795208</span><span class="p">}</span>
+
+<span class="n">cli</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;predict&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_calls&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s1">&#39;mean_duration&#39;</span><span class="p">:</span> <span class="mi">2626521</span><span class="p">,</span>
+  <span class="s1">&#39;mean_duration_human&#39;</span><span class="p">:</span> <span class="s1">&#39;2ms626μs521ns&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ewm_duration&#39;</span><span class="p">:</span> <span class="mi">2362354</span><span class="p">,</span>
+  <span class="s1">&#39;ewm_duration_human&#39;</span><span class="p">:</span> <span class="s1">&#39;2ms362μs354ns&#39;</span><span class="p">},</span>
+ <span class="s1">&#39;learn&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_calls&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s1">&#39;mean_duration&#39;</span><span class="p">:</span> <span class="mi">2684414</span><span class="p">,</span>
+  <span class="s1">&#39;mean_duration_human&#39;</span><span class="p">:</span> <span class="s1">&#39;2ms684μs414ns&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ewm_duration&#39;</span><span class="p">:</span> <span class="mi">2653290</span><span class="p">,</span>
+  <span class="s1">&#39;ewm_duration_human&#39;</span><span class="p">:</span> <span class="s1">&#39;2ms653μs290ns&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-as-json">
+<h3>Model as Json<a class="headerlink" href="#model-as-json" title="Permalink to this headline"></a></h3>
+<p>If you need a reminder about your model structure, a helpful function
+is to look at it as json.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the model (this is a json representation)</span>
+<span class="n">model_json</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">get_model_json</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is an example dumped to json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;StandardScaler&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;with_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;LinearRegression&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;optimizer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;SGD&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;lr&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="s2">&quot;Constant&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;learning_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">]</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;loss&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;Squared&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;l2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;intercept_init&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;intercept_lr&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;Constant&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;learning_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;clip_gradient&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000000000000.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;initializer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;Zeros&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This is for informational purposes only, as you can’t do much with it.</p>
+</div>
+<div class="section" id="download-model">
+<span id="getting-started-user-guide-usage-download-model"></span><h3>Download Model<a class="headerlink" href="#download-model" title="Permalink to this headline"></a></h3>
+<p>To download a pickle of your model, you can use this endpoint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span><span class="o">.</span><span class="n">download_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By default, it will be called <code class="docutils literal notranslate"><span class="pre">&lt;model_name&gt;.pkl</span></code> unless you provide a custom name:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span><span class="o">.</span><span class="n">download_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="s2">&quot;model.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="all-models">
+<span id="getting-started-user-guide-usage-all-models"></span><h3>All Models<a class="headerlink" href="#all-models" title="Permalink to this headline"></a></h3>
+<p>Here is how to list all the model names that the server knows about:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all models</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">models</span><span class="p">())</span>
+<span class="p">{</span><span class="s1">&#39;models&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;doopy-poodle&#39;</span><span class="p">,</span> <span class="s1">&#39;phat-dog&#39;</span><span class="p">,</span> <span class="s1">&#39;tart-gato&#39;</span><span class="p">,</span> <span class="s1">&#39;wobbly-egg&#39;</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="finding-models">
+<span id="getting-started-user-guide-usage-finding-models"></span><h3>Finding Models<a class="headerlink" href="#finding-models" title="Permalink to this headline"></a></h3>
+<p>It’s likely that as time passes you’ll have a lot of models and not remember which is
+which! We can combine a few endpoints discussed above to better look at our models.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">cli</span><span class="o">.</span><span class="n">models</span><span class="p">()[</span><span class="s1">&#39;models&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">get_model_json</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streaming-events-or-metrics">
+<span id="getting-started-user-guide-usage-streaming"></span><h3>Streaming Events or Metrics<a class="headerlink" href="#streaming-events-or-metrics" title="Permalink to this headline"></a></h3>
+<p>If you want to watch a server for events (e.g., anything that happens in real like prediction or learning is an event)
+or metrics (calculated or updated for a model) you will be interested in streaming endpoints.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stream events</span>
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">cli</span><span class="o">.</span><span class="n">stream_events</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<span class="c1"># Stream metrics</span>
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">cli</span><span class="o">.</span><span class="n">stream_metrics</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Both of the above will hang until you press Control+C or otherwise kill the connection.</p>
+</div>
+<div class="section" id="deleting-a-model">
+<h3>Deleting a Model<a class="headerlink" href="#deleting-a-model" title="Permalink to this headline"></a></h3>
+<p>If you want to delete a model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span><span class="o">.</span><span class="n">delete_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will delete the model, it’s stats, metrics, and flavor. This operation cannot be undone.</p>
+<p>This library is under development and we will have more documentation coming soon!</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_reference/internal/modules.html" class="btn btn-neutral float-right" title="Internal API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Vanessa Sochat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
