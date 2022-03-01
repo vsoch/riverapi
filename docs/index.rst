@@ -42,10 +42,11 @@ Resources
    :caption: Getting started
    :name: getting_started
    :hidden:
-   :maxdepth: 2
+   :maxdepth: 3
 
    getting_started/index
    getting_started/user-guide
+   getting_started/spec
 
 .. toctree::
     :caption: API Reference
