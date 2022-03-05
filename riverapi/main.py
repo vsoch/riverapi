@@ -248,6 +248,22 @@ class Client:
         logger.info("Created model %s" % model_name)
         return model_name
 
+    def label(self, label, identifier, model_name):
+        """
+        Given a label we know for a prediction after the fact (which we can
+        look up with an identifier from the server), use the label endpoint
+        to update the model metrics and call learn one. Note that the
+        model_name is not technically required (it's stored with the cached
+        entry) however we require providing it to validate the association.
+        If you have a label at the time of running predict you can use it
+        then and should not need this endpoint. Also note that ground_truth
+        of a prediction is synonymous with label here.
+        """
+        return self.post(
+            "/label/",
+            json={"model": model_name, "identifier": identifier, "label": label},
+        )
+
     def learn(self, model_name, x, y=None):
         """
         Train on some data. You are required to provide at least the model

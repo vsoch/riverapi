@@ -56,7 +56,20 @@ def main():
 
     # Make predictions
     for x, y in datasets.TrumpApproval().take(10):
-        print(cli.predict(model_name, x=x))
+        res = cli.predict(model_name, x=x)
+        print(res)
+
+    # By default the server will generate an identifier on predict that you can
+    # later use to label it. Let's do that for the last predict call!
+    identifier = res['identifier']
+
+    # Let's pretend we now have a label Y for the data we didn't before.
+    # The identifier is going to allow the server to find the features,
+    # x, and we just need to do:
+    res = cli.label(label=y, identifier=identifier, model_name=model_name)
+    print(res)
+    # Note that model_name is cached too, and we provide it here just 
+    # to ensure the identifier is correctly associated.
 
     # Get stats and metrics for the model
     cli.stats(model_name)
@@ -80,7 +93,6 @@ if __name__ == "__main__":
     main()
 ```
 
-**under development** more coming soon!
 
 ## Contributors
 

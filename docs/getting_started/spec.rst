@@ -248,8 +248,8 @@ The learn endpoint expects a POST with:
 - `400 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400>`_: bad request
 
 
-Learn
------
+Predict
+-------
 
 ``POST /api/predict/``
 
@@ -258,20 +258,63 @@ The predict endpoint expects a POST with:
  - **model**: the model name intending to present learning data to
  - **features**: a dictionary of features (x)
 
+Optionally you can provide:
+
+ - **identifier**: an identifier to remember the prediction to possibly label later
+
 - `200 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200>`_: success
 - `201 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201>`_: success and identifier created
 - `400 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400>`_: bad request
 
 
+If the server configuration is set to always produce an identifier, if you don't provide one
+you'll get one back anyway. If the server is set to not produce an identifier by default, you
+can still provide one to use later.
+
+
+Label
+-----
+
+``POST /api/label/``
+
+Often you might want to apply a label (ground truth) to a previously done prediction.
+Given that you've obtained an identifier for the prediction, you can use the learn endpoint, which expects:
+
+ - **model**: the model name intending to be found with the identifier cache
+ - **label**: the newly learned label or ground truth (y)
+ - **identifier**: the identifier obtained during the prediction
+ 
+Note that although the model name is technically not required, we require it so the
+server can check that the identifier in question corresponds to the model. If you are generating
+your own identifiers, for example, you might accidentally switch or confuse them between
+models. So this is a sanity check.
+
+- `200 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200>`_: success
+- `400 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400>`_: bad request
+
+Note that this endpoint basically performs the final steps of the ``/learn`` endpoint,
+except you are providing an identifier to get the prediction from the cache. If you have
+the ground truth at the time of generating a prediction, you can provide it directly to that
+endpoint. In both cases, the identifier will be deleted after it's used.
+
 200 or 201
 ^^^^^^^^^^
 
-If the prediction is successful, you'll either get a 200 (success but not created) or 201 (success and created) response,
-along with the prediction and model name back.
+If the prediction is successful, you'll either get a 200 (success and an identifier was not created) or 201 (success and identifier was created) response,
+along with the prediction and model name back. Given an identifier was created, you'll see it!
 
 .. code-block:: python
 
-    {"model": "punky-taco", "prediction": 1.0, "created": True}
+    {"model": "punky-taco", "prediction": 1.0, "identifier": "166e872a-7110-4ef7-ad68-0e624cca906a"}
+
+Without an identifier (200 response) you won't get one back:
+
+.. code-block:: python
+
+    {"model": "punky-taco", "prediction": 1.0}
+
+Note that the prediction can either return a single prediction (binary) or a dictionary 
+of predictions depending on the model type.
 
 
 Metrics
