@@ -348,13 +348,13 @@ can still provide one to use later.</p>
 <div class="section" id="label">
 <h3>Label<a class="headerlink" href="#label" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/label/</span></code></p>
-<p>Often you might want to apply a label (ground truth) to a previously done prediction.
-Given that you’ve obtained an identifier for the prediction, you can use the learn endpoint, which expects:</p>
+<p>Often you might want to apply a label (ground truth) to a previously done learn.
+Given that you’ve obtained an identifier for this session, you can use the label endpoint, which expects:</p>
 <blockquote>
 <div><ul class="simple">
 <li><strong>model</strong>: the model name intending to be found with the identifier cache</li>
 <li><strong>label</strong>: the newly learned label or ground truth (y)</li>
-<li><strong>identifier</strong>: the identifier obtained during the prediction</li>
+<li><strong>identifier</strong>: the identifier obtained during the previous session</li>
 </ul>
 </div></blockquote>
 <p>Note that although the model name is technically not required, we require it so the
@@ -367,7 +367,7 @@ models. So this is a sanity check.</p>
 </ul>
 <p>Note that this endpoint basically performs the final steps of the <code class="docutils literal notranslate"><span class="pre">/learn</span></code> endpoint,
 except you are providing an identifier to get the prediction from the cache. If you have
-the ground truth at the time of generating a prediction, you can provide it directly to that
+the ground truth at the time of your learning, you can provide it directly to that
 endpoint. In both cases, the identifier will be deleted after it’s used.</p>
 <div class="section" id="or-201">
 <h4>200 or 201<a class="headerlink" href="#or-201" title="Permalink to this headline"></a></h4>

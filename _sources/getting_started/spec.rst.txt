@@ -277,12 +277,12 @@ Label
 
 ``POST /api/label/``
 
-Often you might want to apply a label (ground truth) to a previously done prediction.
-Given that you've obtained an identifier for the prediction, you can use the learn endpoint, which expects:
+Often you might want to apply a label (ground truth) to a previously done learn.
+Given that you've obtained an identifier for this session, you can use the label endpoint, which expects:
 
  - **model**: the model name intending to be found with the identifier cache
  - **label**: the newly learned label or ground truth (y)
- - **identifier**: the identifier obtained during the prediction
+ - **identifier**: the identifier obtained during the previous session
  
 Note that although the model name is technically not required, we require it so the
 server can check that the identifier in question corresponds to the model. If you are generating
@@ -294,7 +294,7 @@ models. So this is a sanity check.
 
 Note that this endpoint basically performs the final steps of the ``/learn`` endpoint,
 except you are providing an identifier to get the prediction from the cache. If you have
-the ground truth at the time of generating a prediction, you can provide it directly to that
+the ground truth at the time of your learning, you can provide it directly to that
 endpoint. In both cases, the identifier will be deleted after it's used.
 
 200 or 201
