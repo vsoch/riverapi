@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>riverapi package &mdash; River API Python 0.0.16 documentation</title>
+  <title>riverapi package &mdash; River API Python 0.0.17 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sphinx-argparse.css" type="text/css" />
@@ -31,7 +31,7 @@
             <a href="../../index.html" class="icon icon-home"> River API Python
           </a>
               <div class="version">
-                0.0.16
+                0.0.17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -381,6 +381,19 @@ prefix or baseurl if the server provides different ones.</p>
 <dt class="sig sig-object py" id="riverapi.main.Client.info">
 <code class="sig-name descname"><span class="pre">info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.info" title="Permalink to this definition"></a></dt>
 <dd><p>Get basic server information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="riverapi.main.Client.label">
+<code class="sig-name descname"><span class="pre">label</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">label</span></span></em>, <em><span class="n"><span class="pre">identifier</span></span></em>, <em><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/riverapi/main.html#Client.label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#riverapi.main.Client.label" title="Permalink to this definition"></a></dt>
+<dd><p>Given a label we know for a prediction after the fact (which we can
+look up with an identifier from the server), use the label endpoint
+to update the model metrics and call learn one. Note that the
+model_name is not technically required (it’s stored with the cached
+entry) however we require providing it to validate the association.
+If you have a label at the time of running predict you can use it
+then and should not need this endpoint. Also note that ground_truth
+of a prediction is synonymous with label here.</p>
 </dd></dl>
 
 <dl class="py method">

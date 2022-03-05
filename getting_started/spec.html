@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>River Api Spec &mdash; River API Python 0.0.16 documentation</title>
+  <title>River Api Spec &mdash; River API Python 0.0.17 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sphinx-argparse.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> River API Python
           </a>
               <div class="version">
-                0.0.16
+                0.0.17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -76,7 +76,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#learn">Learn</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Learn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#predict">Predict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#label">Label</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#or-201">200 or 201</a></li>
 </ul>
 </li>
@@ -319,8 +320,8 @@ should be a binary dump (e.g., pickle) of the river model object.</p>
 <li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
 </ul>
 </div>
-<div class="section" id="id17">
-<h3>Learn<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
+<div class="section" id="predict">
+<h3>Predict<a class="headerlink" href="#predict" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/predict/</span></code></p>
 <p>The predict endpoint expects a POST with:</p>
 <blockquote>
@@ -329,18 +330,58 @@ should be a binary dump (e.g., pickle) of the river model object.</p>
 <li><strong>features</strong>: a dictionary of features (x)</li>
 </ul>
 </div></blockquote>
+<p>Optionally you can provide:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>identifier</strong>: an identifier to remember the prediction to possibly label later</li>
+</ul>
+</div></blockquote>
 <ul class="simple">
 <li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
 <li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201">201</a>: success and identifier created</li>
 <li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
 </ul>
+<p>If the server configuration is set to always produce an identifier, if you don’t provide one
+you’ll get one back anyway. If the server is set to not produce an identifier by default, you
+can still provide one to use later.</p>
+</div>
+<div class="section" id="label">
+<h3>Label<a class="headerlink" href="#label" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/label/</span></code></p>
+<p>Often you might want to apply a label (ground truth) to a previously done prediction.
+Given that you’ve obtained an identifier for the prediction, you can use the learn endpoint, which expects:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>model</strong>: the model name intending to be found with the identifier cache</li>
+<li><strong>label</strong>: the newly learned label or ground truth (y)</li>
+<li><strong>identifier</strong>: the identifier obtained during the prediction</li>
+</ul>
+</div></blockquote>
+<p>Note that although the model name is technically not required, we require it so the
+server can check that the identifier in question corresponds to the model. If you are generating
+your own identifiers, for example, you might accidentally switch or confuse them between
+models. So this is a sanity check.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200</a>: success</li>
+<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400">400</a>: bad request</li>
+</ul>
+<p>Note that this endpoint basically performs the final steps of the <code class="docutils literal notranslate"><span class="pre">/learn</span></code> endpoint,
+except you are providing an identifier to get the prediction from the cache. If you have
+the ground truth at the time of generating a prediction, you can provide it directly to that
+endpoint. In both cases, the identifier will be deleted after it’s used.</p>
 <div class="section" id="or-201">
 <h4>200 or 201<a class="headerlink" href="#or-201" title="Permalink to this headline"></a></h4>
-<p>If the prediction is successful, you’ll either get a 200 (success but not created) or 201 (success and created) response,
-along with the prediction and model name back.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;punky-taco&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<p>If the prediction is successful, you’ll either get a 200 (success and an identifier was not created) or 201 (success and identifier was created) response,
+along with the prediction and model name back. Given an identifier was created, you’ll see it!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;punky-taco&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;166e872a-7110-4ef7-ad68-0e624cca906a&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>Without an identifier (200 response) you won’t get one back:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;punky-taco&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the prediction can either return a single prediction (binary) or a dictionary
+of predictions depending on the model type.</p>
 </div>
 </div>
 <div class="section" id="metrics">

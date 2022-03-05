@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>riverapi.main &mdash; River API Python 0.0.16 documentation</title>
+  <title>riverapi.main &mdash; River API Python 0.0.17 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sphinx-argparse.css" type="text/css" />
@@ -30,7 +30,7 @@
             <a href="../../index.html" class="icon icon-home"> River API Python
           </a>
               <div class="version">
-                0.0.16
+                0.0.17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -326,6 +326,22 @@
         <span class="n">model_name</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created model </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">model_name</span></div>
+
+<div class="viewcode-block" id="Client.label"><a class="viewcode-back" href="../../api_reference/internal/riverapi.html#riverapi.main.Client.label">[docs]</a>    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a label we know for a prediction after the fact (which we can</span>
+<span class="sd">        look up with an identifier from the server), use the label endpoint</span>
+<span class="sd">        to update the model metrics and call learn one. Note that the</span>
+<span class="sd">        model_name is not technically required (it&#39;s stored with the cached</span>
+<span class="sd">        entry) however we require providing it to validate the association.</span>
+<span class="sd">        If you have a label at the time of running predict you can use it</span>
+<span class="sd">        then and should not need this endpoint. Also note that ground_truth</span>
+<span class="sd">        of a prediction is synonymous with label here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">&quot;/label/&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span> <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">label</span><span class="p">},</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Client.learn"><a class="viewcode-back" href="../../api_reference/internal/riverapi.html#riverapi.main.Client.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
