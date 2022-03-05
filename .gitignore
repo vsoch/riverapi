@@ -1,6 +1,6 @@
 bin/
 lib/
-usrse.egg-info/
+riverapi.egg-info/
 env
 .env
 env
