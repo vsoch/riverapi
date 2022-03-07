@@ -23,7 +23,7 @@ class Client:
     def __init__(self, baseurl=None, quiet=False, prefix="api"):
         self.baseurl = (baseurl or defaults.baseurl).strip("/")
         self.quiet = quiet
-        self.flavors = ["regression", "binary", "multiclass"]
+        self.flavors = ["regression", "binary", "multiclass", "cluster", "custom"]
         self.session = requests.session()
         self.headers = {"Accept": "application/json", "User-Agent": "riverapi-python"}
         self.prefix = prefix
