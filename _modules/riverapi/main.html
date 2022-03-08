@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>riverapi.main &mdash; River API Python 0.0.18 documentation</title>
+  <title>riverapi.main &mdash; River API Python 0.0.19 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sphinx-argparse.css" type="text/css" />
@@ -30,7 +30,7 @@
             <a href="../../index.html" class="icon icon-home"> River API Python
           </a>
               <div class="version">
-                0.0.18
+                0.0.19
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -274,7 +274,8 @@
             <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
                 <span class="n">typ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">apiroot</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span>
             <span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">quiet</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">stream</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">return_json</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">quiet</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">stream</span> <span class="ow">and</span> <span class="n">return_json</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">print_response</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_response</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">return_json</span><span class="o">=</span><span class="n">return_json</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span></div>
 
@@ -315,14 +316,19 @@
             <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Client.upload_model"><a class="viewcode-back" href="../../api_reference/internal/riverapi.html#riverapi.main.Client.upload_model">[docs]</a>    <span class="k">def</span> <span class="nf">upload_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">flavor</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.upload_model"><a class="viewcode-back" href="../../api_reference/internal/riverapi.html#riverapi.main.Client.upload_model">[docs]</a>    <span class="k">def</span> <span class="nf">upload_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">flavor</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Given a model / pipeline, upload to an online-ml server.</span>
 
 <span class="sd">        model = preprocessing.StandardScaler() | linear_model.LinearRegression()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_flavor</span><span class="p">(</span><span class="n">flavor</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/model/</span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="n">flavor</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dill</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">model_name</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="s2">&quot;/model/</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">flavor</span><span class="p">,</span> <span class="n">model_name</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">dill</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/model/</span><span class="si">%s</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="n">flavor</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dill</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
         <span class="n">model_name</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created model </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">model_name</span></div>
