@@ -195,7 +195,8 @@ class Client:
             r = requests.request(
                 typ, self.apiroot + url, data=data, headers=headers, stream=stream
             )
-        if not self.quiet and not stream and not return_json:
+
+        if not self.quiet and not stream and return_json:
             self.print_response(r)
         return self.check_response(typ, r, return_json=return_json, stream=stream)
 
@@ -236,14 +237,19 @@ class Client:
             stream=stream,
         )
 
-    def upload_model(self, model, flavor):
+    def upload_model(self, model, flavor, model_name=None):
         """
         Given a model / pipeline, upload to an online-ml server.
 
         model = preprocessing.StandardScaler() | linear_model.LinearRegression()
         """
         self.check_flavor(flavor)
-        r = self.post("/model/%s/" % flavor, data=dill.dumps(model))
+        if model_name:
+            r = self.post(
+                "/model/%s/%s/" % (flavor, model_name), data=dill.dumps(model)
+            )
+        else:
+            r = self.post("/model/%s/" % flavor, data=dill.dumps(model))
         model_name = r["name"]
         logger.info("Created model %s" % model_name)
         return model_name
