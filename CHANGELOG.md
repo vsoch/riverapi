@@ -14,6 +14,7 @@ and **Merged pull requests**. Critical items to know are:
 The versions coincide with releases on pip. Only major versions will be released as tags on Github.
 
 ## [0.0.x](https://github.com/vsoch/riverapi/tree/main) (0.0.x)
+ - add neighbor flavor (0.0.2)
  - exposing model name in upload model endpoint (0.0.19)
  - support for custom and cluster models (to be implemented) (0.0.18)
  - support for label endpoint (0.0.17)
