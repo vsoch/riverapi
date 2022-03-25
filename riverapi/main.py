@@ -26,6 +26,7 @@ class Client:
         self.flavors = [
             "regression",
             "binary",
+            "creme",
             "multiclass",
             "cluster",
             "custom",
